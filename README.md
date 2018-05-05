@@ -6,3 +6,9 @@ This app is going to have following functionalities:
 * track your daily expenses compared to maximum monthly expense (just like e.g. calorie counters)
 * categorize the expenses based on the needs (e.g. food, hobby, school, work)
 * simple analytics
+
+```Śledzenie codziennych i comiesięcznych wydatków:
+Użytkownik wprowadza swój miesięczny przychód oraz wydatki
+możliwość określenia miesięcznej/dziennej granicy wydatków
+przeglądanie historii wydatków, kategoryzowanie wydatków (np. jedzenie, transport)
+prosta analityka (np. wykres pokazujący % udział kategorii wydatków w kwocie wydanej w trakcie miesiąca)```
