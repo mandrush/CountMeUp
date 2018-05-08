@@ -8,15 +8,24 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    //TODO FIRST TIME LOG IN
+    //TODO PROGRESS BARY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val monthlyMoneyText = findViewById<TextView>(R.id.monthlyMoneyText)
-        monthlyMoneyText.text = getString(R.string.monthly_expenditure, Money.expense, Money.monthlyIncome)
         val dailyMoneyText = findViewById<TextView>(R.id.dailyMoneyText)
-        dailyMoneyText.text = getString(R.string.daily_expenditure, Money.expense, Money.dailyLimit)
+        val monthlyMoneyText = findViewById<TextView>(R.id.monthlyMoneyText)
+
+        monthlyMoneyText.text = getString(
+                R.string.monthly_expenditure,
+                Ledger.monthlySpendings,
+                UserSettings.monthlyIncome)
+
+        dailyMoneyText.text = getString(
+                R.string.daily_expenditure,
+                Ledger.dailySpendings,
+                UserSettings.dailyLimit)
 
     }
 

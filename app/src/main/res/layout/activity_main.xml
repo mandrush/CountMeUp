@@ -17,7 +17,7 @@
         android:gravity="center_vertical|center"
         android:text="@+string/monthly_expenditure"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintBottom_toTopOf="@+id/monthlyProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar1"
+        android:id="@+id/dailyProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="344dp"
         android:layout_height="73dp"
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/monthlyProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="345dp"
         android:layout_height="73dp"
@@ -74,7 +74,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="@+string/daily_expenditure"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar1"
+        app:layout_constraintBottom_toTopOf="@+id/dailyProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
