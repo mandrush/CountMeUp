@@ -8,11 +8,17 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    //TODO FIRST TIME LOG IN
     //TODO PROGRESS BARY
+//    TODO dodanie daty wydatku jako property klasy Expense?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val prefs = applicationContext.getSharedPreferences("Preferences", 0)
+        if (prefs.getBoolean("FirstTimeSet", true)) {
+            val i = Intent(applicationContext, FirstTimeActivity::class.java)
+            startActivity(i)
+        }
         setContentView(R.layout.activity_main)
         val dailyMoneyText = findViewById<TextView>(R.id.dailyMoneyText)
         val monthlyMoneyText = findViewById<TextView>(R.id.monthlyMoneyText)

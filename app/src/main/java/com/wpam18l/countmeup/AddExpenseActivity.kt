@@ -9,11 +9,11 @@ import android.widget.Toast.LENGTH_SHORT
 
 class AddExpenseActivity : AppCompatActivity(){
 
-    var currencyList = arrayListOf<String>("PLN", "USD", "EUR", "GBP")
-    var categoryList = arrayListOf<String>("Food", "Bills", "Home", "Medicine", "Travel")
+    private var currencyList = arrayListOf<String>("PLN", "USD", "EUR", "GBP")
+    private var categoryList = arrayListOf<String>("Food", "Bills", "Home", "Medicine", "Travel")
 
-    var selectedCurrency: String? = null
-    var selectedCategory: String? = null
+    private var selectedCurrency: String? = null
+    private var selectedCategory: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,6 @@ class AddExpenseActivity : AppCompatActivity(){
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCurrency = currencySpinner.selectedItem.toString()
-
             }
         }
         categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
