@@ -59,7 +59,10 @@ class FirstTimeActivity : AppCompatActivity() {
     fun saveSettings() {
         val prefs: SharedPreferences = applicationContext.getSharedPreferences("Preferences", 0)
         val editor = prefs.edit()
-        editor.putBoolean("FirstTimeSet", false)
+        editor.putBoolean("FirstTimeSet", true)
+        editor.putFloat("MonthlyIncome", UserSettings.monthlyIncome)
+        editor.putFloat("DailyLimit", UserSettings.dailyLimit)
+        editor.putString("Currency", UserSettings.defaultCurrency)
         editor.apply()
     }
 }
