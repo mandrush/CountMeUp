@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".NewDayNotificationReceiver"
+            android:process=":remote" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddExpenseActivity" />
-        <activity android:name=".FirstTimeActivity"></activity>
+        <activity android:name=".FirstTimeActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

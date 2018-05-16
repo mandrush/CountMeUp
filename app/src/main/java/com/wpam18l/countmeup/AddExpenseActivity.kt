@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.Toast.LENGTH_SHORT
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddExpenseActivity : AppCompatActivity(){
 
@@ -60,11 +62,15 @@ class AddExpenseActivity : AppCompatActivity(){
             return
         }
         val enteredAmount: Float = enteredAmountText.toString().toFloat()
-        val expense = Expense(enteredAmount, selectedCurrency, selectedCategory)
+        val expenseDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
+        val expense = Expense(enteredAmount, selectedCurrency, selectedCategory, expenseDate)
         Ledger.addToDailySpendings(enteredAmount)
         Ledger.addToMontlySpendings(enteredAmount)
         Ledger.addToExpenseHistory(expense)
-//        Expense.addExpense(enteredAmountText.toString().toFloat())
+//        save to preferences
+        val prefs = applicationContext.getSharedPreferences("Preferences", 0)
+        prefs.edit().putFloat("DailySpendings", Ledger.dailySpendings).apply()
+        prefs.edit().putFloat("MonthlySpendings", Ledger.monthlySpendings).apply()
         val i = Intent(applicationContext, MainActivity::class.java)
         startActivity(i)
     }
