@@ -21,7 +21,9 @@ import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
-//    TODO historia wydatkow - wylistowanie
+//    TODO konwersja walut
+//    TODO analityka?
+//    TODO jak starczy czasu - kosmetyka?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

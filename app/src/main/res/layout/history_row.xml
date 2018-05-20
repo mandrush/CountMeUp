@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/rowExpenseText"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="wydatek wal"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/expenseDateText"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rowExpenseText"
+        android:layout_below="@+id/rowExpenseText"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="18sp"
+        android:text="data" />
+
+    <ImageView
+        android:id="@+id/historyImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_column="2"
+        android:layout_marginEnd="45dp"
+        android:layout_row="0"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+
+</RelativeLayout>

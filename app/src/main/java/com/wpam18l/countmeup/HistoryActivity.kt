@@ -2,6 +2,8 @@ package com.wpam18l.countmeup
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 import org.jetbrains.anko.db.SqlOrderDirection
 import org.jetbrains.anko.db.classParser
@@ -24,6 +26,10 @@ class HistoryActivity : AppCompatActivity() {
         expenseHistory.iterator().forEach {
             println(it.toString())
         }
+
+        val listView = findViewById(R.id.historyListView) as ListView
+        val listViewAdapter = ExpenseArrayAdapter(this, R.layout.history_row, expenseHistory)
+        listView.adapter = listViewAdapter
 
     }
 }
