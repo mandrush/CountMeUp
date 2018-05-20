@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.Toast.LENGTH_SHORT
+import org.jetbrains.anko.db.insert
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddExpenseActivity : AppCompatActivity(){
 
-    private var currencyList = arrayListOf<String>("PLN", "USD", "EUR", "GBP")
-    private var categoryList = arrayListOf<String>("Food", "Bills", "Home", "Medicine", "Travel")
+//    private var currencyList = arrayListOf<String>("PLN", "USD", "EUR", "GBP")
+//    private var categoryList = arrayListOf<String>("Food", "Bills", "Home", "Medicine", "Travel")
 
     private var selectedCurrency: String? = null
     private var selectedCategory: String? = null
@@ -27,12 +28,12 @@ class AddExpenseActivity : AppCompatActivity(){
         val currencySpinnerAA = ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_item,
-                currencyList)
+                Ledger.availableCurrencies)
 
         val categorySpinnerAA = ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_item,
-                categoryList)
+                Ledger.availableCategories)
 
         currencySpinner.adapter = currencySpinnerAA
         categorySpinner.adapter = categorySpinnerAA
@@ -62,16 +63,32 @@ class AddExpenseActivity : AppCompatActivity(){
             return
         }
         val enteredAmount: Float = enteredAmountText.toString().toFloat()
-        val expenseDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
+        val expenseDate = Date().time
         val expense = Expense(enteredAmount, selectedCurrency, selectedCategory, expenseDate)
         Ledger.addToDailySpendings(enteredAmount)
         Ledger.addToMontlySpendings(enteredAmount)
         Ledger.addToExpenseHistory(expense)
+
 //        save to preferences
         val prefs = applicationContext.getSharedPreferences("Preferences", 0)
         prefs.edit().putFloat("DailySpendings", Ledger.dailySpendings).apply()
         prefs.edit().putFloat("MonthlySpendings", Ledger.monthlySpendings).apply()
+
+//        save to DB
+        saveExpenseToDB(enteredAmount, selectedCurrency, selectedCategory, expenseDate)
+
+//        back to main activity
         val i = Intent(applicationContext, MainActivity::class.java)
         startActivity(i)
+    }
+
+    private fun saveExpenseToDB(amount: Float?, currency: String?, category: String?, date: Long?) {
+        database.use {
+            insert("Expense",
+                    "amount" to amount,
+                    "currency" to currency,
+                    "category" to category,
+                    "date" to date)
+        }
     }
 }

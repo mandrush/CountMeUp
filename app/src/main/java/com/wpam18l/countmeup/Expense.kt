@@ -4,7 +4,7 @@ class Expense (
         private var _expense: Float,
         private var _currency: String?,
         private var _category: String?,
-        private var _date: String?) {
+        private var _date: Long?) {
 
     var expense: Float = _expense
         set(value) {
@@ -20,6 +20,9 @@ class Expense (
         "GBP" -> Currency.GBP
         else -> throw IllegalArgumentException("Undefined currency, critical error.")
     }
-    var date: String? = _date
+    var date: Long? = _date
 
+    override fun toString(): String {
+        return "This expense is $expense $currency of $category category done at $date"
+    }
 }

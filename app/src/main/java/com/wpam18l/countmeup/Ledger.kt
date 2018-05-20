@@ -7,7 +7,9 @@ class Ledger {
         var dailySpendings: Float = 0.0f
         var monthlySpendings: Float = 0.0f
         var expenseHistory: MutableList<Expense> = arrayListOf()
-        val availableCurrencies = arrayListOf<String>("PLN", "USD", "EUR", "GBP")
+
+        val availableCurrencies = arrayListOf("PLN", "USD", "EUR", "GBP")
+        val availableCategories = arrayListOf("Food", "Bills", "Home", "Medicine", "Travel")
 
         fun addToDailySpendings(x: Float) { dailySpendings += x }
         fun addToMontlySpendings(x: Float) { monthlySpendings += x }
