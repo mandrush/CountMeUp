@@ -69,7 +69,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="Daily Limit:"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/mothlyIncomeSettingsEdit"
+        app:layout_constraintEnd_toStartOf="@+id/monthlyIncomeSettingsEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/mothlyIncomeSettingsEdit"
+        android:id="@+id/monthlyIncomeSettingsEdit"
         android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -105,5 +105,5 @@
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mothlyIncomeSettingsEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/monthlyIncomeSettingsEdit" />
 </android.support.constraint.ConstraintLayout>

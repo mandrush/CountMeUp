@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CountMeUp</string>
-    <string name="daily_expenditure">Daily expenses: <b>%1$.02f / %2$.02f</b></string>
-    <string name="monthly_expenditure">Monthly expenses: <b>%1$.02f / %2$.02f</b></string>
+    <string name="daily_expenditure">Daily expenses: <b>%1$.02f / %2$.02f %3$s</b></string>
+    <string name="monthly_expenditure">Monthly expenses: <b>%1$.02f / %2$.02f %3$s</b></string>
 </resources>

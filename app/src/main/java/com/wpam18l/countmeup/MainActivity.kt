@@ -21,7 +21,6 @@ import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
-//    TODO settings - mam juz activity, uzupelnic tym samym w sumie co w first time
 //    TODO historia wydatkow - wylistowanie
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,12 +46,14 @@ class MainActivity : AppCompatActivity() {
         monthlyMoneyText.text = getString(
                 R.string.monthly_expenditure,
                 Ledger.monthlySpendings,
-                UserSettings.monthlyIncome)
+                UserSettings.monthlyIncome,
+                UserSettings.defaultCurrency)
 
         dailyMoneyText.text = getString(
                 R.string.daily_expenditure,
                 Ledger.dailySpendings,
-                UserSettings.dailyLimit)
+                UserSettings.dailyLimit,
+                UserSettings.defaultCurrency)
 
         val dailyProgressBar = findViewById<ProgressBar>(R.id.dailyProgressBar)
         val monthlyProgressBar = findViewById<ProgressBar>(R.id.monthlyProgressBar)

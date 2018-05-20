@@ -51,12 +51,12 @@ class FirstTimeActivity : AppCompatActivity() {
         UserSettings.monthlyIncome = monthlyIncome.toString().toFloat()
         UserSettings.dailyLimit = dailyLimit.toString().toFloat()
 
-        saveSettings()
+        saveInPrefs()
         val i = Intent(applicationContext, MainActivity::class.java)
         startActivity(i)
     }
 
-    fun saveSettings() {
+    private fun saveInPrefs() {
         val prefs: SharedPreferences = applicationContext.getSharedPreferences("Preferences", 0)
         val editor = prefs.edit()
         editor.putBoolean("FirstTimeSet", true)
