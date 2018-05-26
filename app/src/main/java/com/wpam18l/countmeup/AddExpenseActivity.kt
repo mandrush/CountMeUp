@@ -1,12 +1,17 @@
 package com.wpam18l.countmeup
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.Toast.LENGTH_SHORT
 import org.jetbrains.anko.db.insert
+import org.json.JSONObject
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,9 +69,14 @@ class AddExpenseActivity : AppCompatActivity(){
         }
         val enteredAmount: Float = enteredAmountText.toString().toFloat()
         val expenseDate = Date().time
-        val expense = Expense(enteredAmount, selectedCurrency, selectedCategory, expenseDate)
-        Ledger.addToDailySpendings(enteredAmount)
-        Ledger.addToMontlySpendings(enteredAmount)
+
+        var convertedAmount = Ledger.convertAmount(selectedCurrency, enteredAmount)
+        Toast
+                .makeText(applicationContext, "Converted $enteredAmount $selectedCurrency to $convertedAmount ${UserSettings.defaultCurrency}", LENGTH_SHORT)
+                .show()
+        val expense = Expense(convertedAmount, selectedCurrency, selectedCategory, expenseDate)
+        Ledger.addToDailySpendings(convertedAmount)
+        Ledger.addToMontlySpendings(convertedAmount)
         Ledger.addToExpenseHistory(expense)
 
 //        save to preferences
@@ -75,7 +85,7 @@ class AddExpenseActivity : AppCompatActivity(){
         prefs.edit().putFloat("MonthlySpendings", Ledger.monthlySpendings).apply()
 
 //        save to DB
-        saveExpenseToDB(enteredAmount, selectedCurrency, selectedCategory, expenseDate)
+        saveExpenseToDB(convertedAmount, selectedCurrency, selectedCategory, expenseDate)
 
 //        back to main activity
         val i = Intent(applicationContext, MainActivity::class.java)
@@ -91,4 +101,5 @@ class AddExpenseActivity : AppCompatActivity(){
                     "date" to date)
         }
     }
+
 }

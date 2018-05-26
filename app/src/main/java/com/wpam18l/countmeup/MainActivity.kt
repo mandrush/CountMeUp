@@ -2,11 +2,10 @@ package com.wpam18l.countmeup
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -14,14 +13,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.wpam18l.countmeup.R.id.text
-import java.text.SimpleDateFormat
-import java.util.*
+import org.json.JSONObject
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
-//    TODO konwersja walut
 //    TODO analityka?
 //    TODO jak starczy czasu - kosmetyka?
 
@@ -75,6 +74,12 @@ class MainActivity : AppCompatActivity() {
         monthlyProgressBar.progress = monthlyProgress
 
         println(java.util.Calendar.getInstance())
+        val download = Download()
+        try {
+            download.execute()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -109,6 +114,57 @@ class MainActivity : AppCompatActivity() {
                 System.currentTimeMillis(),
                 50000,
                 pending)
+    }
+
+    inner class Download : AsyncTask<String, Void, String>() {
+
+        override fun doInBackground(vararg params: String?): String {
+
+            var result = ""
+            var url: URL
+            var httpURLConnection: HttpURLConnection
+            val APIKey = "173de9569d3322f038ccf0635b4583a5"
+
+            try {
+                url = URL("http://data.fixer.io/api/latest?access_key=$APIKey")
+                httpURLConnection = url.openConnection() as HttpURLConnection
+                val inputStream = httpURLConnection.inputStream
+                val inputStreamReader = InputStreamReader(inputStream)
+
+                var data = inputStreamReader.read()
+
+                while (data > 0) {
+                    val character = data.toChar()
+                    result += character
+
+                    data = inputStreamReader.read()
+                }
+                return result
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return result
+            }
+
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            try {
+                val JSONObject = JSONObject(result)
+                println(JSONObject)
+                val rates = JSONObject.getString("rates")
+                val ratesJson = JSONObject(rates)
+                Ledger.PLNinEUR = ratesJson.getString("PLN").toFloat()
+                Ledger.GBPinEUR = ratesJson.getString("GBP").toFloat()
+                Ledger.USDinEUR = ratesJson.getString("USD").toFloat()
+                println("${Ledger.GBPinEUR}, ${Ledger.USDinEUR}, ${Ledger.PLNinEUR}")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
     }
 
 
