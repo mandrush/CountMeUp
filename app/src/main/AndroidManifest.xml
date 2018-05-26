@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wpam18l.countmeup">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,7 +25,8 @@
         <activity android:name=".AddExpenseActivity" />
         <activity android:name=".FirstTimeActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AnalyticsActivity"></activity>
     </application>
 
 </manifest>

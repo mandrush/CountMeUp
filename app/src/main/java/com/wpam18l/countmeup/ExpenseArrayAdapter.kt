@@ -42,7 +42,7 @@ class ExpenseArrayAdapter(ctx: Context, res: Int, expenseList: List<Expense>) : 
         }
 
         val expenseRow = listItem?.findViewById<TextView>(R.id.rowExpenseText)
-        expenseRow?.text = "${currentExpense.expense} ${currentExpense.currency}"
+        expenseRow?.text = "${currentExpense.expense} ${UserSettings.defaultCurrency}"
         val dateRow = listItem?.findViewById<TextView>(R.id.expenseDateText)
         val d = currentExpense.date
         val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")

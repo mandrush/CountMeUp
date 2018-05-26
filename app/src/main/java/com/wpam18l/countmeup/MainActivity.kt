@@ -97,6 +97,10 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(applicationContext, SettingsActivity::class.java)
             startActivity(i)
         }
+        else if (item?.itemId == R.id.menu_analytics) {
+            val i = Intent(applicationContext, AnalyticsActivity::class.java)
+            startActivity(i)
+        }
         return super.onOptionsItemSelected(item)
     }
 
