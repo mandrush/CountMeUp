@@ -62,6 +62,7 @@ class AnalyticsActivity : AppCompatActivity() {
                 sum += element
             }
             summed.add(sum)
+            sum = 0.0f
         }
 
     }
