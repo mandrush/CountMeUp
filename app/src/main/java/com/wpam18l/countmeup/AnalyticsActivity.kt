@@ -1,14 +1,19 @@
 package com.wpam18l.countmeup
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.EventLogTags
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import org.jetbrains.anko.db.SqlOrderDirection
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.rowParser
 import org.jetbrains.anko.db.select
+import kotlin.math.round
 
 class AnalyticsActivity : AppCompatActivity() {
 
@@ -19,7 +24,7 @@ class AnalyticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_analytics)
 
         var pieChart = findViewById<PieChart>(R.id.PieChart)
-        pieChart.holeRadius = 20.0f
+        pieChart.holeRadius = 40.0f
         pieChart.centerText = "Expense by category"
         pieChart.setCenterTextSize(10.0f)
         pieChart.setDrawEntryLabels(true)
@@ -58,12 +63,30 @@ class AnalyticsActivity : AppCompatActivity() {
         val expensesByCategory = arrayListOf(foodExpenseList, billsExpenseList, homeExpenseList, medicineExpenseList, travelExpenseList)
         var summed: MutableList<Float> = arrayListOf()
         expensesByCategory.forEach { list ->
-            list.forEach { element ->
-                sum += element
+            list.forEach { amount ->
+                sum += amount
             }
             summed.add(sum)
             sum = 0.0f
         }
-
+        val paired = summed.zip(Ledger.availableCategories)
+        var entries: MutableList<PieEntry> = arrayListOf()
+        paired.forEach { (amount, category) ->
+            entries.add(PieEntry(amount, category))
+        }
+        val pieDataSet = PieDataSet(entries, "Spendings by category")
+        pieDataSet.setColors(
+                Color.rgb(0, 153, 0),       //dark green
+                Color.rgb(0, 102, 255),     //pretty blue
+                Color.rgb(204, 0, 204),     //dark magenta
+                Color.rgb(204, 153, 0),     //dark gold
+                Color.rgb(230, 57, 0))      //dark red
+        val data = PieData(pieDataSet)
+        data.setValueFormatter { value, entry, dataSetIndex, viewPortHandler ->
+            "%.2f".format(value) + " %"
+        }
+        pieChart.data = data
+        pieChart.setUsePercentValues(true)
+        pieChart.invalidate()
     }
 }
