@@ -21,17 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/addExpenseButton"
-        android:layout_width="87dp"
-        android:layout_height="68dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="60dp"
-        android:onClick="addExpenseOnClick"
-        android:text="ADD EXPENSE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ProgressBar
         android:id="@+id/dailyProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -75,5 +64,20 @@
         app:layout_constraintBottom_toTopOf="@+id/dailyProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="addExpenseOnClick"
+        app:layout_constraintBottom_toTopOf="@+id/dailyMoneyText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/if_money_299107" />
 
 </android.support.constraint.ConstraintLayout>
